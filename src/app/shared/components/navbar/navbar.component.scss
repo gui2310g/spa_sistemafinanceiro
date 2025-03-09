@@ -1,0 +1,75 @@
+@use "../../utils/flex.scss";
+@use "../../utils/widthHeight.scss";
+
+header {
+  @include flex.flex(row, space-between, center, 10px, none);
+  @include widthHeight.widthHeight(100%, 100%, 60px);
+  position: fixed;
+  top: 0;
+  background-color: #373948;
+  border-bottom: 2px solid black;
+  padding-right: 20px;
+  color: white;
+
+  button {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  div {
+    @include flex.flex(row, none, center, 10px, none);
+    margin: 0px 20px 0px 20px;
+
+    img { width: 50px; }
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+
+    &:hover { color: #9f9d9d; }
+  }
+
+  .sidenav {
+    @include widthHeight.widthHeight(100%, 200px, 100%);
+    display: none;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    background-color: #373948;
+    transition: 0.3s;
+    padding-top: 60px;
+    z-index: 1;
+
+    .close-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    li { padding: 10px 16px; }
+  }
+
+  .sidenav.open { left: 0; }
+
+  @media screen and (max-width: 600px) {
+    @include flex.flex(row, space-around, center, 0px, none);
+    padding: 0;
+    div { margin: 0; }
+
+    .div-left { display: none; }
+
+    button { display: block; }
+
+    .sidenav { display: block }
+  }
+}

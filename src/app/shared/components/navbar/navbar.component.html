@@ -1,0 +1,25 @@
+<header>
+  <button (click)="toggleSidenav()">☰</button>
+
+  <div class="div-left">
+    <a routerLink="/"><h4>Dashboard</h4></a>
+    <a routerLink="/"><h4>Centro de custos</h4></a>
+    <a routerLink="/"><h4>Titulos</h4></a>
+  </div>
+
+  <div>
+    <img src="user.jpg" alt="user photo" />
+    <h4>Usuário</h4>
+    <a routerLink="/"><h4>Logout</h4></a>
+  </div>
+
+  <div class="sidenav" [class.open]="isSidenavOpen">
+    <button class="close-btn" (click)="toggleSidenav()">X</button>
+
+    <ul>
+      <a routerLink="/"><h4>Dashboard</h4></a>
+      <a routerLink="/"><h4>Centro de custos</h4></a>
+      <a routerLink="/"><h4>Titulos</h4></a>
+    </ul>
+  </div>
+</header>
