@@ -1,0 +1,54 @@
+<main class="main">
+  <article class="article">
+    <div class="article-header">
+      <h3>Lista de Centro de Custos</h3>
+
+      <button (click)="OpenModal()">+ Adicionar</button>
+    </div>
+    <div class="table">
+      <table>
+        <thead class="table-header">
+          <tr class="table-header">
+            <th>Id</th>
+            <th>Descrição</th>
+            <th>Observação</th>
+          </tr>
+        </thead>
+        @for(centrodeCusto of centrodeCustos; track centrodeCusto.id) {
+          <tbody>
+            <tr>
+              <td>{{centrodeCusto.id}}</td>
+              <td>{{centrodeCusto.descricao}}</td>
+              <td>{{centrodeCusto.observacao}}</td>
+              <td><button (click)="OpenDeleteModal()">Excluir</button></td>
+            </tr>
+          </tbody>
+        }
+      </table>
+  </div>
+  </article>
+</main>
+
+<app-modal
+  [showModal]="showModal"
+  (closeModal)="CloseModal()"
+  [title]="'Adicionar Centro de Custo'"
+  [buttonName]="'Adicionar'"
+>
+  <form class="form">
+    <label for="descricao">Descrição:</label>
+    <input type="text" placeholder="Descrição" id="descricao">
+
+    <label for="observacao">Observação:</label>
+    <input type="text" placeholder="Observação" id="observacao">
+  </form>
+</app-modal>
+
+<app-modal
+  [showModal]="showDeleteModal"
+  (closeModal)="CloseDeleteModal()"
+  [title]="'Excluir Centro de Custo'"
+  [buttonName]="'Excluir'"
+>
+  <span>Tem certeza de que deseja excluir o centro de custo?</span>
+</app-modal>
