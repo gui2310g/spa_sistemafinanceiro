@@ -1,1 +1,78 @@
-<p>titulo works!</p>
+<main class="main">
+  <article class="article">
+    <div class="article-header">
+      <h3>Lista de Titulos</h3>
+
+      <button (click)="OpenModal()">+ Adicionar</button>
+    </div>
+    <div class="table">
+      <table>
+        <thead class="table-header">
+          <tr class="table-header">
+            <th>Id</th>
+            <th>Descrição</th>
+            <th>Tipo</th>
+            <th>Valor</th>
+            <th>Data Referencia</th>
+            <th>Data Vencimento</th>
+            <th>Observação</th>
+          </tr>
+        </thead>
+        @for(titulo of titulos; track titulo.id) {
+          <tbody>
+            <tr>
+              <td>{{titulo.id}}</td>
+              <td>{{titulo.descricao}}</td>
+              <td>{{titulo.tipo}}</td>
+              <td>{{titulo.valor}}</td>
+              <td>{{titulo.dataReferencia}}</td>
+              <td>{{titulo.dataVencimento}}</td>
+              <td>{{titulo.observacao}}</td>
+              <td><button (click)="OpenDeleteModal()">Excluir</button></td>
+            </tr>
+          </tbody>
+        }
+      </table>
+  </div>
+  </article>
+</main>
+
+<app-modal
+  [showModal]="showModal"
+  (closeModal)="CloseModal()"
+  [title]="'Adicionar Titulo'"
+  [buttonName]="'Adicionar'"
+>
+  <form class="form">
+    <label for="descricao">Descrição:</label>
+    <input type="text" placeholder="Descrição" id="descricao" required>
+
+    <label for="tipo">Definir tipo</label>
+    <select name="Tipo" id="tipo">
+      <option value="entrada">Entrada</option>
+      <option value="saida">Saida</option>
+    </select>
+
+    <label for="valor">Valor:</label>
+    <input type="text" placeholder="valor" id="valor" required>
+
+    <label for="dataReferencia">data Referencia:</label>
+    <input type="date" placeholder="data Referencia" id="dataReferencia" required>
+
+    <label for="dataVencimento">data Referencia:</label>
+    <input type="date" placeholder="data Vencimento" id="dataVencimento" required>
+
+    <label for="observacao">Observação:</label>
+    <input type="text" placeholder="Observação" id="observacao" required>
+  </form>
+</app-modal>
+
+<app-modal
+  [showModal]="showDeleteModal"
+  (closeModal)="CloseDeleteModal()"
+  [title]="'Excluir Titulo'"
+  [buttonName]="'Excluir'"
+>
+  <span>Tem certeza de que deseja excluir o titulo?</span>
+</app-modal>
+
