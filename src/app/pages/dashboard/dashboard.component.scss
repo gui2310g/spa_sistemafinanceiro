@@ -1,0 +1,74 @@
+@use "../../shared/utils/flex.scss";
+@use "../../shared/utils/widthHeight.scss";
+
+.main {
+  @include flex.flex(column, center, center, 0px, none);
+  max-width: 1200px;
+  margin: 50px auto;
+
+  .article {
+    @include widthHeight.widthHeight(100%, 600px, none);
+    color: white;
+    border-radius: 5px;
+
+    button {
+      @include widthHeight.widthHeight(100%, 100px, 25px);
+      background-color: #46bb29;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #33871f;
+        transition: 0.2s all;
+      }
+    }
+
+    .table {
+      @include widthHeight.widthHeight(100%, 100%, 600px);
+      background-color: #373948;
+      text-align: center;
+      border-radius: 10px;
+
+      .table-header {
+        @include flex.flex(row, space-between, center, 0px, none);
+        padding: 10px;
+        border-bottom: 1px solid black;
+
+        form {
+          @include flex.flex(row, space-evenly, center, 0px, none);
+          width: 100%;
+
+          @media screen and (max-width: 600px) {
+            @include flex.flex(column, space-evenly, center, 10px, none);
+          }
+          div {
+            @include flex.flex(row, none, center, 10px, none);
+          }
+        }
+      }
+
+      .entrys-deposits {
+        h2 {
+          background-color: #6c708d;
+          padding: 5px;
+        }
+
+        .sub-titles,
+        .sub-description,
+        .sub-total {
+          @include flex.flex(row, space-between, center, 10px, none);
+          background-color: #2c2d39;
+          padding: 10px;
+        }
+      }
+
+      .total {
+        margin-top: 20px;
+        font-size: 20px;
+      }
+    }
+  }
+}

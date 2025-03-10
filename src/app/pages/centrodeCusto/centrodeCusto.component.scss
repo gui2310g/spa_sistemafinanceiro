@@ -3,7 +3,7 @@
 
 .main {
   max-width: 1200px;
-  margin: 100px auto;
+  margin: 50px auto;
 
   .article {
     @include widthHeight.widthHeight(100%, 100%, none);
