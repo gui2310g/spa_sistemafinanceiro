@@ -1,5 +1,12 @@
 export interface User {
-  nome: string,
+  id: number
+  nome?: string,
   email: string,
-  senha: string
+  token: string,
+  role: EUsuario
+}
+
+export enum EUsuario {
+  ADMIN = 'ROLE_ADMIN',
+  USER = 'ROLE_USER'
 }
