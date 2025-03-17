@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule} from '@angular
 import { AuthService } from '../../core/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { LoggedUser } from '../../core/models/login.model';
-import { User } from '../../core/models/user.model';
+import { EUsuario, User } from '../../core/models/user.model';
 @Component({
   selector: 'app-auth',
   standalone: true,
@@ -13,6 +13,7 @@ import { User } from '../../core/models/user.model';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
+  user!: User
   showModal: boolean = false;
   loginForm!: FormGroup;
   createForm!: FormGroup;
@@ -29,6 +30,7 @@ export class AuthComponent implements OnInit {
       email: ['', Validators.required],
       nome: ['', Validators.required],
       senha: ['', [Validators.required, Validators.minLength(6)]],
+      role: [EUsuario.USER]
     });
   }
 
@@ -40,7 +42,8 @@ export class AuthComponent implements OnInit {
     if (this.loginForm.valid) {
       const user: LoggedUser = this.loginForm.value;
       this.authService.login(user).subscribe({
-        next: () => setTimeout(() => { this.router.navigate(['dashboard'])}, 1000),
+        next: (response) =>
+          { this.router.navigate([response.role === EUsuario.ADMIN ? 'admin' : 'dashboard'])}
       });
     }
   }
@@ -49,7 +52,7 @@ export class AuthComponent implements OnInit {
     if (this.createForm.valid) {
       const user: User = this.createForm.value;
       this.authService.create(user).subscribe({
-        next: () => setTimeout(() => { this.router.navigate(['dashboard']);}, 1000),
+        next: () => { this.router.navigate(['dashboard']);}
       });
     }
   }
